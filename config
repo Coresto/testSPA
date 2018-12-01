@@ -1,0 +1,6 @@
+name                  : Total.js SPA
+author				  : Maroš Kozák
+version				  : 1.0
+allow-custom-titles   : true
+secret				  : secret-key-for-signature
+cookie                : __user
