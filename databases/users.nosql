@@ -1,2 +1,3 @@
 {"id":1,"username":"admin","password":"admin123","email":"admin.admin@test.sk","role":"admin"}
 {"id":2,"username":"xtestu","password":"123456","email":"user.test@test.sk","role":"user"}
+{"id":3,"username":"xtestu2","password":"123456","email":"user2.test@test.sk","role":"user"}

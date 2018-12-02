@@ -26,7 +26,6 @@
 			<div class="avatar"><i class="fas fa-user"></i></div>
 		</div>
 		<div class="tools">
-			<a href="@{#}/help/" class="R"><i class="fa fa-question-circle"></i><span>@(Help)</span></a>
 			<a href="@{#}/settings/" class="R"><i class="fa fa-cog"></i><span>@(Settings)</span></a>
 			<a href="@{#}/logout/"><i class="fa fa-sign-out"></i><span>@(Sign out)</span></a>
 		</div>
@@ -40,22 +39,25 @@
 						<div class="caption">@(Navigation)</div>
 						<nav class="links">
 							<a href="@{#}/" class="R" data-if="dashboard"><i class="fa fa-dashboard"></i>@(Dashboard)</a>
-							<a href="@{#}/users/" class="R" data-if="users"><i class="fa fa-clock-o"></i>@(Users)</a>
 							<a href="@{#}/settings/" class="R" data-if="settings"><i class="fa fa-box"></i>@(Settings)</a>
 						</nav>
-						<br />
+						<br>
 						<div class="caption">@(My account)</div>
 						<nav class="links">
 							<a href="@{#}/notifications/" class="R" data-if="notifications"><i class="fa fa-bell"></i>@(Notifications)<b>2</b></a>
 							<a href="@{#}/account/" class="R" data-if="account"><i class="fa fa-cog"></i>@(My account)</a>
 						</nav>
+						<div class="caption">@(Admin)</div>
+						<div class="links">
+							<a href="@{#}/users/" class="R" data-if="users"><i class="fas fa-user-cog"></i>@(User administration)</a>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-lg-10 col-sm-9">
 				<div id="body">
 					<div data-jc="part__common.page__if:dashboard;url:/parts/dashboard.html;reload:dashboard/reload;cleaner:5"></div>
-					<div data-jc="part__common.page__if:users;url:/parts/user.html;reload:users/reload;cleaner:5"></div>
+					<div data-jc="part__common.page__if:users;url:/parts/users.html;reload:users/reload;cleaner:5"></div>
 					<div data-jc="part__common.page__if:account;url:/parts/account.html;reload:account/reload;cleaner:5"></div>
 				</div>
 			</div>
@@ -93,9 +95,6 @@
 			SET('common.page', 'account');
 		});
 
-		ROUTE('/help/', function() {
-			SET('common.page', 'help');
-		});
 
 	</script>
 
