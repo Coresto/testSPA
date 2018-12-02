@@ -3,7 +3,6 @@ NEWSCHEMA('User').make(function(schema) {
 	schema.define('username', 'String(30)', true);
 	schema.define('password', 'String(30)', true);
 
-
 	schema.addWorkflow('login', function(error, model, controller, callback) {
 		NOSQL('users').find().make(function(builder) {
 			console.log('username:' + model.username);
@@ -16,7 +15,7 @@ NEWSCHEMA('User').make(function(schema) {
 				if (!response) {
 					console.log('error-user-404');
 					error.push('error-user-404');
-					return callback();
+					return callback(false);
 				}
 				// Writes logs
 				NOSQL('users-logs').insert({ id: response.id, username: response.username, email: response.email, date: new Date().format('dd.MM.yyyy HH:mm:ss') });
@@ -28,5 +27,5 @@ NEWSCHEMA('User').make(function(schema) {
 			}, error);
 		});
 	});
-
+	
 });

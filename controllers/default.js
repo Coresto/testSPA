@@ -42,5 +42,5 @@ function redirect_logout() {
 		}
 	}
 	self.cookie(F.config.cookie, '', '-1 day');
-	self.empty();
+	self.redirect('/');
 }

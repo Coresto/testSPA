@@ -22,8 +22,8 @@
 	<div class="panel panelshow">
 		<h1><i class="fa fa-lock"></i>@(Login)</h1>
 		<div class="padding">
-			<div class="m" data-jc="textbox__form.username__icon2:user;type:text;required:true;autofocus:true;">@(User name)</div>
-			<div class="m" data-jc="textbox__form.password__icon2:lock;type:password;required:true;">@(Password)</div>
+			<div class="m" data-jc="textbox__form.username__icon2:user;type:text;required:true;autofocus:true;autofill:true;delay:0;">@(User name)</div>
+			<div class="m" data-jc="textbox__form.password__icon2:lock;type:password;required:true;autofill:true;delay:0;">@(Password)</div>
 			<div class="m" data-jc="error__form.response" class="ui-error hidden"></div>
 			<div data-jc="validation__form__if:form.username && form.password;">
 				<button name="submit" type="submit" disabled="disabled" class="button b mt5 login exec" data-exec="app/login"><i class="fa fa-lock"></i>@(Login)</button>
@@ -45,6 +45,7 @@
 			};
 
 		});
+		
 	</script>
 </body>
 </html>
