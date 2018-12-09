@@ -4,12 +4,12 @@
 	<div class="button-bar">
 
 	</div>
-	<div data-jc="datagrid__user__height:350;checkbox:false;click:users/user">
+	<div data-jc="datagrid__user__height:350;checkbox:false;click:users/user;reorder:false;">
 		<script type="text/plain">
 			[
 				{ name: 'id', text: 'ID', width: 60 },
-				{ name: 'name', text: 'Meno' },
-				{ name: 'surname', text: 'Priezvisko' },
+				{ name: 'name', text: 'Meno', width: 120 },
+				{ name: 'surname', text: 'Priezvisko', width: 120 },
 				{ name: 'username', text: 'Prihlasovacie meno' },
 				{ name: 'email', text: 'E-mail' },
 				{ name: 'password', text: 'Password', width: 120 },
@@ -18,7 +18,19 @@
 		</script>
 	</div>
 </div>
-
+<div data-jc="panel__common.panel__if:show;title:Upraviť pužívateľa;" class="hidden">
+	<div class="padding" data-jc-scope="panledata">
+		<div class="m" data-jc="textbox__name">@(Name)</div>
+		<div class="m" data-jc="textbox__surname">@(Surname)</div>
+		<div class="m" data-jc="textbox__username__required:true;">@(User name)</div>
+		<div class="m" data-jc="textbox__email__type:email;">@(E-mail)</div>
+		<div class="m" data-jc="textbox__password__required:true;type:password">@(Password)</div>
+	</div>
+	<div class="ui-panel-buttons" data-jc="validation__panledata" data-jc-config="if:panledata.username && panledata.password;" data-jc-noscope="true">
+		<button name="submit" type="submit" disabled="disabled" class="exec" data-exec="users/save"><i class="fas fa-save"></i>@(Save)</button>
+		<button name="cancel">@(Cancel)</button>
+	</div>
+</div>
 <script type="text/javascript">
 	var user = [];
 	PLUGIN('users', function(exports) {
@@ -34,7 +46,19 @@
 		};
 
 		exports.user = function(row, grid, row_el) {
+			SET('panledata', CLONE(row));
+			SET('common.panel', 'show');
+		};
 
+		exports.save = function() {
+			AJAX('PUT /api/users/', GET('panledata'), function(response, err) {
+				if (err) {
+					return;
+				}
+				SET('panledata', null);
+				SET('common.panel', null);
+				exports.refresh();
+			});
 		};
 
 	});

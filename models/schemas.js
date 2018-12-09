@@ -1,14 +1,16 @@
 NEWSCHEMA('Users').make(function(schema) {
+	schema.define('id', 'Number');
 	schema.define('username', 'String(30)', true);
 	schema.define('password', 'String(30)', true);
+	schema.define('name', 'String(50)');
+	schema.define('surname', 'String(50)');
+	schema.define('email', 'Email');
 
 	schema.addWorkflow('login', function($) {
-
-		var model = $.model;
 		NOSQL('users').find().make(function(builder) {
 			builder.first();
-			builder.where('username', model.username);
-			builder.where('password', model.password);
+			builder.where('username', $.model.username);
+			builder.where('password', $.model.password);
 			builder.callback(function(err, response) {
 				if (!response) {
 					$.invalid('error-user-404');
@@ -22,5 +24,19 @@ NEWSCHEMA('Users').make(function(schema) {
 				$.success();
 			});
 		});
+	});
+
+	schema.addWorkflow('update_user', function($) {
+		NOSQL('users').modify($.model).make(function(builder) {
+			builder.where('id', $.model.id);
+			builder.callback(function(err, count) {
+				if (!err && count !== 1) {
+					$.invalid('error-user-403');
+					return;
+				}
+				$.success();
+    		});
+		});
+
 	});
 });

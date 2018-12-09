@@ -1,7 +1,7 @@
 exports.install = function() {
 	GROUP(['unauthorize'], function() {
 		ROUTE('/*', 'login');
-		ROUTE('POST   /login/           *Users --> @login');
+		ROUTE('POST		/login/          				*Users --> @login');
 	});
 
 	GROUP(['authorize'], function() {

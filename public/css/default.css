@@ -20,6 +20,8 @@ html,body { margin: 0; padding: 0; }
 .ml5 { margin-left: 5px; }
 .mb10 { margin-bottom: 10px; }
 
+.z-100 { z-index: 100; }
+
 .alert { background-color: #fffad7; border-color: #fffdbf; padding: 15px; border-radius: 3px; color: #988e56; font-size: 12px; }
 .alert .fa { margin-right: 5px; }
 
@@ -144,3 +146,12 @@ header .tools a:last-child { color: $color; font-weight: bold; }
 
 .ui-button-login { width: 100%; padding: 10px 0px 10px 0px; margin-top: 10px; border-radius: 5px; background-color: #bdf8bc; border: 0; text-transform: uppercase; font-weight: bold;}
 .ui-button-login i { margin-right: 5px; }
+
+
+.ui-panel-buttons { padding: 15px; margin-bottom: 10px; border-top: 5px solid #F0F0F0; background-color: #F8F8F8; }
+.ui-panel-buttons button { width: 100%; border: 1px solid #E0E0E0; background-color: white; border-radius: 3px; height: 35px; color: black; cursor: pointer; vertical-align: middle; outline: 0; font-size: 14px; text-decoration: none; transition: all 0.3s; }
+.ui-panel-buttons button:hover { border-color: silver; }
+.ui-panel-buttons button:active { background-color: #D0D0D0; }
+.ui-panel-buttons button:disabled { background-color: #F5F5F5 !important; border-color: #E0E0E0 !important; color: silver !important; cursor: not-allowed; box-shadow: none; }
+.ui-panel-buttons button[name="submit"] { font-weight: bold; margin-bottom: 10px; }
+.ui-panel-buttons button[name="cancel"] { color: gray; }
