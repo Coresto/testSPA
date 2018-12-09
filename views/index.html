@@ -35,44 +35,41 @@
 		<div class="row">
 			<div class="col-lg-2 col-sm-3 mainmenu-container" data-jc="selected__common.page__selector:a.R">
 				<div class="mainmenu">
-					<div class="scroller-xs">
-						<div class="caption">@(Navigation)</div>
-						<nav class="links">
-							<a href="@{#}/" class="R" data-if="dashboard"><i class="fa fa-dashboard"></i>@(Dashboard)</a>
-							<a href="@{#}/settings/" class="R" data-if="settings"><i class="fa fa-box"></i>@(Settings)</a>
-						</nav>
-						<br>
-						<div class="caption">@(My account)</div>
-						<nav class="links">
-							<a href="@{#}/notifications/" class="R" data-if="notifications"><i class="fa fa-bell"></i>@(Notifications)<b>2</b></a>
-							<a href="@{#}/account/" class="R" data-if="account"><i class="fa fa-cog"></i>@(My account)</a>
-						</nav>
-						<div class="caption">@(Admin)</div>
-						<div class="links">
-							<a href="@{#}/users/" class="R" data-if="users"><i class="fas fa-user-cog"></i>@(User administration)</a>
-						</div>
+					<div class="scroller-xs" data-bind="common.navigation__template">
+						<script type="text/html">
+							{{ foreach m in value }}
+								<div class="caption">@({{ m.title }})</div>
+								<nav class="links">
+									{{ foreach item in m.item }}
+										<a href="{{ item.href }}" class="R" data-if="{{ item.dataIf }}"><i class="fas fa-{{ item.icon }}"></i>@({{ item.name }})</a>
+									{{ end }}
+								</nav>
+								<br>
+							{{ end }}
+						</script>
 					</div>
 				</div>
 			</div>
 			<div class="col-lg-10 col-sm-9">
 				<div id="body">
-					<div data-jc="part__common.page__if:dashboard;url:/parts/dashboard.html;reload:dashboard/reload;cleaner:5"></div>
-					<div data-jc="part__common.page__if:users;url:/parts/users.html;reload:users/reload;cleaner:5"></div>
-					<div data-jc="part__common.page__if:account;url:/parts/account.html;reload:account/reload;cleaner:5"></div>
+					<div data-jc="part__common.page__if:dashboard;url:/parts/content/dashboard.html;reload:dashboard/reload;cleaner:5"></div>
+					<div data-jc="part__common.page__if:users;url:/parts/content/users.html;reload:users/reload;cleaner:5"></div>
+					<div data-jc="part__common.page__if:account;url:/parts/content/account.html;reload:account/reload;cleaner:5"></div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<div data-jc="importer__common.form__if:detailform;cleaner:5;url:/forms/detail.html"></div>
 
 	@{json(user, 'userdata')}
 
 	<script>
 
 		var common = {};
-		var user = PARSE('#userdata');
-
+		common.notifications = 4;
+		common.user = PARSE('#userdata');
+		AJAX('GET /api/navigator/', function(response) {
+			SET('common.navigation', response);
+		});
 		NAV.clientside('.R');
 
 		ROUTE('/', function() {
@@ -94,7 +91,6 @@
 		ROUTE('/account/', function() {
 			SET('common.page', 'account');
 		});
-
 
 	</script>
 

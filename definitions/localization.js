@@ -1,5 +1,5 @@
 LOCALIZE('/forms/*.html');
-LOCALIZE('/parts/*.html');
+LOCALIZE('/parts/*');
 LOCALIZE('/pages/*.html');
 
 

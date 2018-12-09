@@ -8,7 +8,7 @@ html,body { margin: 0; padding: 0; }
 .green { color: #5a9e48 !important; }
 .red { color: red !important; }
 .yellow { color: #d7cd17 !important; }
-.blue { color: #4285F4 !important; }
+.blue { color: $color !important; }
 .silver { color: #A0A0A0; }
 .gray { color: gray; }
 .npt { padding-top: 0 !important; }

@@ -1,0 +1,13 @@
+[
+	{
+		"title": "Navigation",
+		"item": [
+			{
+				"name": "Dashboard",
+				"icon": "desktop",
+				"href": "/",
+				"dataIf": "dashboard"
+			}
+		]
+	}
+]

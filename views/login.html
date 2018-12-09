@@ -34,18 +34,18 @@
 		PLUGIN('app', function(exports) {
 
 			exports.login = function() {
-				AJAX('POST /login?ts=' + Date.now(), form, function(value, err, response) {
+				AJAX('POST /login', form, function(value, err, response) {
 					if (err) {
 						console.log('request error --> ' + err);
 						return;
 					}
 					console.log('login response');
-					window.location.href = '/';
+					window.location.reload();
 				});
 			};
 
 		});
-		
+
 	</script>
 </body>
 </html>

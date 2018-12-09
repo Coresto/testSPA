@@ -1,0 +1,41 @@
+<h2>@(Users administration)</h2>
+
+<div class="row">
+	<div class="button-bar">
+
+	</div>
+	<div data-jc="datagrid__user__height:350;checkbox:false;click:users/user">
+		<script type="text/plain">
+			[
+				{ name: 'id', text: 'ID', width: 60 },
+				{ name: 'name', text: 'Meno' },
+				{ name: 'surname', text: 'Priezvisko' },
+				{ name: 'username', text: 'Prihlasovacie meno' },
+				{ name: 'email', text: 'E-mail' },
+				{ name: 'password', text: 'Password', width: 120 },
+				{ name: 'role', text: 'Rola', width: 80 }
+			]
+		</script>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var user = [];
+	PLUGIN('users', function(exports) {
+
+		exports.reload = function() {
+			exports.refresh();
+		};
+
+		exports.refresh = function(){
+			AJAX('GET /api/users/', function(response) {
+				SET('user', response);
+			});
+		};
+
+		exports.user = function(row, grid, row_el) {
+
+		};
+
+	});
+</script>

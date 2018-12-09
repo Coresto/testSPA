@@ -1,6 +1,7 @@
-name                  : Total.js SPA
+logger				  : console
+name                  : SPA
 author				  : Maroš Kozák
 version				  : 1.0
-allow-custom-titles   : true
+allow_custom_titles   : true
 secret				  : secret-key-for-signature
 cookie                : __user

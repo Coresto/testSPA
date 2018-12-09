@@ -5,15 +5,18 @@ AUTH(function(req, res, flags, next) {
 		return next(false);
 
 	var obj = F.decrypt(cookie, 'user');
-	console.log('Authkey: ' + obj);
+	console.log('Authkey: ' + JSON.stringify(obj));
 	if (!obj)
 		return next(false);
 
 	var session = MAIN.sessions[obj.id];
-	console.log('Session: ' + session);
+	console.log('Session: ' + JSON.stringify(session));
 	if (session) {
+		if (session.role) {
+			flags.push('@' + session.role);
+		}
 		// Extends session
-		session.expire = NOW.add('10 minutes');
+		session.expire = NOW.add('20 minutes');
 		return next(true, session);
 	}
 	NOSQL('users').find().make(function(builder) {
@@ -23,8 +26,9 @@ AUTH(function(req, res, flags, next) {
 			console.log('response --> ' + response.id);
 			if (!response)
 				return next(false);
-			F.cache.add('user_' + response.id, response, '10 minutes');
+			F.cache.add('user_' + response.id, response, '20 minutes');
 			MAIN.sessions[response.id] = response;
+			flags.push('@' + response.role);
 			next(true, response);
 		});
 	});
@@ -32,7 +36,7 @@ AUTH(function(req, res, flags, next) {
 
 // Clears expired sessions
 ON('service', function(counter) {
-	if (counter % 10 !== 0)
+	if (counter % 20 !== 0)
 		return;
 	var keys = Object.keys(MAIN.sessions);
 	for (var i = 0; i < keys.length; i++) {

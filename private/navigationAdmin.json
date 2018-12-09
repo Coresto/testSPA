@@ -1,0 +1,23 @@
+[
+	{
+		"title": "Navigation",
+		"item": [
+			{
+				"name": "Dashboard",
+				"icon": "desktop",
+				"href": "/",
+				"dataIf": "dashboard"
+			}
+		]
+	},{
+		"title": "Admin",
+		"item": [
+			{
+				"name": "User administration",
+				"icon": "user-cog",
+				"href": "/users/",
+				"dataIf": "users"
+			}
+		]
+	}
+]
