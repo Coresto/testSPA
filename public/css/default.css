@@ -11,6 +11,7 @@ html,body { margin: 0; padding: 0; }
 .blue { color: $color !important; }
 .silver { color: #A0A0A0; }
 .gray { color: gray; }
+
 .npt { padding-top: 0 !important; }
 .npb { padding-bottom: 0 !important; }
 .nmt { margin-top: 0 !important; }
@@ -19,8 +20,8 @@ html,body { margin: 0; padding: 0; }
 .mr5 { margin-right: 5px; }
 .ml5 { margin-left: 5px; }
 .mb10 { margin-bottom: 10px; }
-
-.z-100 { z-index: 100; }
+.b { font-weight: bold; }
+.m { margin-bottom: 20px; }
 
 .alert { background-color: #fffad7; border-color: #fffdbf; padding: 15px; border-radius: 3px; color: #988e56; font-size: 12px; }
 .alert .fa { margin-right: 5px; }
@@ -38,10 +39,9 @@ h1 i { margin-right: 10px; }
 h2 { margin: 0 0 15px; font-family: $font; font-size: 20px; padding: 0; color: black; line-height: 22px; }
 h2 i { margin-right: 10px; color: $color; }
 
-.b { font-weight: bold; }
-.m { margin-bottom: 20px; }
 #body { border-left: 1px solid #E0E0E0; min-height: 200px; padding: 20px 20px 20px 40px; margin-left: 20px; }
 
+.bg-white { background-color: white; }
 .bg-yellow { background-color: #FFFFD5; }
 .bg-smoke { background-color: #F8F8F8; }
 
@@ -153,5 +153,9 @@ header .tools a:last-child { color: $color; font-weight: bold; }
 .ui-panel-buttons button:hover { border-color: silver; }
 .ui-panel-buttons button:active { background-color: #D0D0D0; }
 .ui-panel-buttons button:disabled { background-color: #F5F5F5 !important; border-color: #E0E0E0 !important; color: silver !important; cursor: not-allowed; box-shadow: none; }
-.ui-panel-buttons button[name="submit"] { font-weight: bold; margin-bottom: 10px; }
+.ui-panel-buttons button[name="submit"] { font-weight: bold; margin-bottom: 10px; background-color: $color; color: white; }
 .ui-panel-buttons button[name="cancel"] { color: gray; }
+
+.button-bar { padding: 0px 5px 20px 0px; }
+.button-bar button { background-color: $color; color: white; border-radius: 3px; border: 1px gray solid; padding: 5px 10px; }
+.button-bar button i { padding-right: 5px; }

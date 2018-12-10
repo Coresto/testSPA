@@ -2,9 +2,9 @@
 
 <div class="row">
 	<div class="button-bar">
-
+		<button class="exec" data-exec="users/newUser"><i class="fas fa-user-plus"></i>@(Add new user)</button>
 	</div>
-	<div data-jc="datagrid__user__height:350;checkbox:false;click:users/user;reorder:false;">
+	<div data-jc="datagrid__user__height:350;checkbox:false;click:users/user;">
 		<script type="text/plain">
 			[
 				{ name: 'id', text: 'ID', width: 60 },
@@ -18,7 +18,7 @@
 		</script>
 	</div>
 </div>
-<div data-jc="panel__common.panel__if:show;title:Upraviť pužívateľa;" class="hidden">
+<div data-jc="panel__common.panel__if:show;title:Upraviť pužívateľa;" class="hidden bg-white">
 	<div class="padding" data-jc-scope="panledata">
 		<div class="m" data-jc="textbox__name">@(Name)</div>
 		<div class="m" data-jc="textbox__surname">@(Surname)</div>
@@ -26,7 +26,7 @@
 		<div class="m" data-jc="textbox__email__type:email;">@(E-mail)</div>
 		<div class="m" data-jc="textbox__password__required:true;type:password">@(Password)</div>
 	</div>
-	<div class="ui-panel-buttons" data-jc="validation__panledata" data-jc-config="if:panledata.username && panledata.password;" data-jc-noscope="true">
+	<div class="ui-panel-buttons" data-jc="validation__panledata" data-jc-config="if:panledata.username && panledata.password;timeout:500;">
 		<button name="submit" type="submit" disabled="disabled" class="exec" data-exec="users/save"><i class="fas fa-save"></i>@(Save)</button>
 		<button name="cancel">@(Cancel)</button>
 	</div>
@@ -46,8 +46,9 @@
 		};
 
 		exports.user = function(row, grid, row_el) {
-			SET('panledata', CLONE(row));
 			SET('common.panel', 'show');
+			SET('panledata', CLONE(row));
+			UPDATE2('panledata');
 		};
 
 		exports.save = function() {
@@ -58,6 +59,12 @@
 				SET('panledata', null);
 				SET('common.panel', null);
 				exports.refresh();
+			});
+		};
+
+		exports.newUser = function() {
+			ROUTE('/users/create/', function() {
+				SET('common.page', 'create-user');
 			});
 		};
 

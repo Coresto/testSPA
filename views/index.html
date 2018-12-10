@@ -52,9 +52,10 @@
 			</div>
 			<div class="col-lg-10 col-sm-9">
 				<div id="body">
-					<div data-jc="part__common.page__if:dashboard;url:/parts/content/dashboard.html;reload:dashboard/reload;cleaner:5"></div>
-					<div data-jc="part__common.page__if:users;url:/parts/content/users.html;reload:users/reload;cleaner:5"></div>
-					<div data-jc="part__common.page__if:account;url:/parts/content/account.html;reload:account/reload;cleaner:5"></div>
+					<div data-jc="part__common.page__if:dashboard;url:/parts/content/dashboard.html;reload:dashboard/reload"></div>
+					<div data-jc="part__common.page__if:users;url:/parts/content/users.html;reload:users/reload"></div>
+					<div data-jc="part__common.page__if:settings;url:/parts/content/settings.html;reload:settings/reload"></div>
+					<div data-jc="part__common.page__if:create-user;url:/parts/content/create-user.html;reload:create/reload"></div>
 				</div>
 			</div>
 		</div>
@@ -81,7 +82,7 @@
 		});
 
 		ROUTE('/settings/', function() {
-			SET('common.page', 'account');
+			SET('common.page', 'settings');
 		});
 
 		ROUTE('/notifications/', function() {

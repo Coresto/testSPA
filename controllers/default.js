@@ -13,6 +13,7 @@ exports.install = function() {
 		ROUTE('GET 		/api/navigator/				 	* --> @get_nav_admin');
 		ROUTE('GET		/api/users/						* --> @get_users');
 		ROUTE('PUT		/api/users/						*Users --> @update_user');
+		ROUTE('POST		/api/users/						*Users --> @create_user');
 	});
 	GROUP(['authorize', '@user'], function() {
 		ROUTE('GET 		/api/navigator/ 				* --> @get_nav_user');
