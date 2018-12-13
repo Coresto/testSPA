@@ -1,11 +1,9 @@
 AUTH(function(req, res, flags, next) {
 	var cookie = req.cookie(F.config.cookie);
-	console.log('Cookie: ' + cookie);
 	if (!cookie || cookie.length < 30)
 		return next(false);
 
-	var obj = F.decrypt(cookie, 'user');
-	console.log('Authkey: ' + JSON.stringify(obj));
+	var obj = F.decrypt(cookie, F.config.authkey);
 	if (!obj)
 		return next(false);
 
@@ -19,16 +17,20 @@ AUTH(function(req, res, flags, next) {
 		session.expire = NOW.add('20 minutes');
 		return next(true, session);
 	}
+
 	NOSQL('users').find().make(function(builder) {
 		builder.first();
 		builder.where('id', obj.id);
 		builder.callback(function(err, response) {
-			console.log('response --> ' + response.id);
 			if (!response)
 				return next(false);
-			F.cache.add('user_' + response.id, response, '20 minutes');
+
+			//F.cache.add('user_' + response.id, response, '20 minutes');
 			MAIN.sessions[response.id] = response;
-			flags.push('@' + response.role);
+			MAIN.sessions[response.id].expire = NOW.add('20 min');
+			if (response.role) {
+				flags.push('@' + response.role);
+			}
 			next(true, response);
 		});
 	});

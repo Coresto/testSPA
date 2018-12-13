@@ -21,7 +21,7 @@ NEWSCHEMA('Users').make(function(schema) {
 				NOSQL('users-logs').insert({ id: response.id, username: response.username, email: response.email, date: new Date().format('dd.MM.yyyy HH:mm:ss') });
 
 				// Sets cookies
-				$.controller.cookie(F.config.cookie, F.encrypt({ id: response.id, ip: $.ip }, 'user'), '20 minutes');
+				$.controller.cookie(F.config.cookie, F.encrypt({ id: response.id, ip: $.ip }, F.config.authkey), '20 minutes');
 				$.success();
 			});
 		});
@@ -42,6 +42,7 @@ NEWSCHEMA('Users').make(function(schema) {
 
 	schema.addWorkflow('create_user', function($) {
 		var database = NOSQL('users'), newId = 0;
+		// find max id
 		database.find().make(function(builder) {
 			builder.callback(function (err, response) {
 				if (!err) {
@@ -68,15 +69,16 @@ NEWSCHEMA('Users').make(function(schema) {
 	});
 
 	schema.addWorkflow('delete_user', function($) {
-		// NOSQL('users').modify($.model).make(function(builder) {
-		// 	builder.where('id', $.model.id);
-		// 	builder.callback(function(err, count) {
-		// 		if (!err && count !== 1) {
-		// 			$.invalid('error-user-403');
-		// 			return;
-		// 		}
-		// 		$.success();
-    	// 	});
-		// });
+		NOSQL('users').remove().make(function(builder) {
+			builder.first();
+			builder.where('id', $.model.id);
+			builder.callback(function(err, count) {
+				if (!err) {
+					$.invalid('error-user-403');
+					return;
+				}
+				$.success();
+    		});
+		});
 	});
 });

@@ -1,7 +1,8 @@
-logger				  : console
-name                  : SPA
-author				  : Maroš Kozák
-version				  : 1.0
-allow_custom_titles   : true
-secret				  : secret-key-for-signature
-cookie                : __user
+logger				  	: console
+name                  	: SPA
+author				  	: Maroš Kozák
+version				  	: 1.0
+allow_custom_titles   	: true
+secret				  	: secret-key-for-signature
+cookie                	: __user
+authkey					: qweNKLASDFoweif68

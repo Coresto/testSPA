@@ -66,28 +66,11 @@
 	<script>
 
 		var common = {};
-		common.notifications = 4;
 		common.user = PARSE('#userdata');
 		AJAX('GET /api/navigator/', function(response) {
 			SET('common.navigation', response);
 		});
 		NAV.clientside('.R');
-
-		ROUTE('/', function() {
-			SET('common.page', 'dashboard');
-		});
-
-		ROUTE('/users/', function() {
-			SET('common.page', 'users');
-		});
-
-		ROUTE('/settings/', function() {
-			SET('common.page', 'settings');
-		});
-
-		ROUTE('/notifications/', function() {
-			SET('common.page', 'notifications');
-		});
 
 	</script>
 

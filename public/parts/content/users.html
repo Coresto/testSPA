@@ -63,9 +63,7 @@
 		};
 
 		exports.newUser = function() {
-			ROUTE('/users/create/', function() {
-				SET('common.page', 'create-user');
-			});
+			REDIRECT('/users/create/');
 		};
 
 	});
